@@ -3,7 +3,13 @@
 # ITCS### Course Page
 
 ## The names and student IDs of all team members.
-
+Zahraa Sayed Mohammed Salman - 202005540
+Majd Abdulmajeed Maslamani - 202106579 
+Mariam Jaffer Habib - 20195182 -
+Rawan Jalal Sayed Husain - 202100943 
 ## A table indicating which student was responsible for which task.
-
+Zahraa Sayed Mohammed Salman - 202005540 - Task 2
+Majd Abdulmajeed Maslamani - 202106579 - Task 3
+Mariam Jaffer Habib - 20195182 - Task 4
+Rawan Jalal Sayed Husain - 202100943 - Task 5
 ## A link to your live, hosted application on Replit.
