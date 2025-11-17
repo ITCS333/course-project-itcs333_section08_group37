@@ -1,0 +1,141 @@
+:root {
+  --primary-color: #1e40af; /* أزرق */
+  --secondary-color: #374151; /* رصاصي داكن */
+  --bg-color: #f3f4f6;
+  --card-bg: rgba(255, 255, 255, 0.95);
+  --overlay-color: rgba(0,0,0,0.4);
+  --muted-color: #6b7280;
+  --radius: 12px;
+  --max-width: 1100px;
+  --gap: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+* { box-sizing: border-box; margin:0; padding:0; }
+
+body {
+  min-height: 100vh;
+  background: 
+    linear-gradient(var(--overlay-color), var(--overlay-color)),
+    url('INAF_20200625130048928-a63e604c-961d-4ff5-b510-c942671571f9.jpeg') no-repeat center center fixed;
+  background-size: cover;
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  color: #111827;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  backdrop-filter: blur(6px);
+  border-radius: var(--radius);
+  padding: 24px;
+  background: var(--card-bg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  font-size: 1.5rem;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  background: rgba(30,64,175,0.15);
+}
+
+.nav-link.active {
+  background: rgba(30,64,175,0.2);
+}
+
+.role-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--gap);
+}
+
+@media(max-width: 900px){
+  main { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(16,24,40,0.06);
+  margin-bottom: var(--gap);
+}
+
+.btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+textarea, input[type=text], input[type=email], input[type=password] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  margin-top: 6px;
+  resize: vertical;
+}
+
+footer {
+  text-align: center;
+  color: var(--muted-color);
+  margin-top: 20px;
+  font-size: 0.9rem;
+}
