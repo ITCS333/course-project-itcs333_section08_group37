@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login — ITCS333 Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="card" id="loginCard" style="max-width:420px;margin:50px auto;">
+    <h2>Login</h2>
+    <p class="small">Use email domain: students @stu.uob.edu.bh or admin @uob.edu.bh</p>
+
+    <div class="form-row">
+      <input type="email" id="loginEmail" placeholder="you@stu.uob.edu.bh">
+      <input type="password" id="loginPass" placeholder="password">
+      <button class="btn btn-primary" id="loginBtn">Login</button>
+    </div>
+
+    <div id="loginMsg" class="small" style="margin-top:6px;"></div>
+  </div>
+</div>
+
+<script>
+document.getElementById("loginBtn").addEventListener("click", () => {
+
+  const email = document.getElementById("loginEmail").value.trim().toLowerCase();
+  const pw = document.getElementById("loginPass").value.trim();
+  const msg = document.getElementById("loginMsg");
+
+  if(!email || !pw){
+    msg.style.color="red";
+    msg.textContent="Please enter email and password.";
+    return;
+  }
+
+  let role = "";
+
+  if(email.endsWith("@stu.uob.edu.bh")){
+    role = "student";
+  } else if(email.endsWith("@uob.edu.bh")){
+    role = "admin";
+  } else {
+    msg.style.color="red";
+    msg.textContent="Invalid email domain!";
+    return;
+  }
+
+  // Save login session
+  localStorage.setItem("role", role);
+  localStorage.setItem("email", email);
+
+  // Redirect to homepage
+  window.location.href = "Task1.html";
+});
+</script>
+
+</body>
+</html>
