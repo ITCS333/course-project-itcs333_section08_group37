@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="container">
+    <h1>Week Details</h1>
+  </header>
+
+  <main class="container">
+    <section class="week-details card">
+      <h2 id="weekTitle">Week 1 – Introduction</h2>
+      <p class="description" id="weekDesc">Overview of course structure and tools. This week covers syllabus, expectations, and environment setup (VSCode, Git, Replit).</p>
+
+      <h3>Resources / Notes</h3>
+      <ul>
+        <li><a href="#" target="_blank">Syllabus PDF</a></li>
+        <li><a href="#" target="_blank">Course GitHub Template</a></li>
+        <li><a href="#" target="_blank">VSCode + Extensions Guide</a></li>
+      </ul>
+    </section>
+
+    <section class="comments-section card">
+      <h3>Discussion / Comments</h3>
+
+      <div class="comment-box" style="margin-bottom:12px;">
+        <textarea id="commentText" placeholder="Write a comment..." rows="4"></textarea>
+        <div style="margin-top:8px;">
+          <button class="btn btn-primary" onclick="submitComment()">Submit</button>
+        </div>
+      </div>
+
+      <div class="comments-list" id="commentsList">
+        <div class="comment card" style="padding:10px;">
+          <p><strong>Student A:</strong> This week was helpful! I set up Replit and git.</p>
+          <div class="small">2025-11-01 10:23</div>
+        </div>
+        <div class="comment card" style="padding:10px;">
+          <p><strong>Student B:</strong> I need clarification on the GitHub Classroom steps.</p>
+          <div class="small">2025-11-01 11:05</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">© 2025 — ITCS333 — Group37</footer>
+
+  <script>
+    // Simple front-end comment submission (Phase 1)
+    function submitComment(){
+      const text = document.getElementById('commentText').value.trim();
+      if(!text){ alert('Please write a comment before submitting.'); return; }
+
+      const list = document.getElementById('commentsList');
+      const div = document.createElement('div');
+      div.className = 'comment card';
+      div.style.padding = '10px';
+      const now = new Date();
+      const ts = now.toISOString().slice(0,16).replace('T',' ');
+      div.innerHTML = `<p><strong>You</strong>: ${text}</p><div class="small">${ts}</div>`;
+      list.prepend(div);
+      document.getElementById('commentText').value = '';
+      alert('Comment added (local simulation).');
+    }
+  </script>
+</body>
+</html>
