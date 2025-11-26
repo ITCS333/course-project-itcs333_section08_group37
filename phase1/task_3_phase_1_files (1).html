@@ -1,0 +1,93 @@
+<!-- Task 3 - Weekly Breakdown (Phase 1 - HTML Only)
+File 1: weeks.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Breakdown</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Weekly Breakdown</h1>
+  </header>
+
+  <main class="container">
+    <h2>All Weeks</h2>
+    <div class="week-list">
+      <!-- Example static items (Phase 1) -->
+      <div class="week-card">
+        <h3>Week 1 – Introduction</h3>
+        <p>Overview of course structure and tools.</p>
+        <a href="week_view.html" class="btn">View Details</a>
+      </div>
+
+      <div class="week-card">
+        <h3>Week 2 – HTML Basics</h3>
+        <p>Learning structure, tags, and semantic HTML.</p>
+        <a href="week_view.html" class="btn">View Details</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
+
+<!-- File 2: week_view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Week Details</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Week Details</h1>
+  </header>
+
+  <main class="container">
+    <section class="week-details">
+      <h2>Week Title Here</h2>
+      <p class="description">This is where the description of the week will go.</p>
+      <h3>Resources / Notes</h3>
+      <ul>
+        <li><a href="#">Example Resource Link 1</a></li>
+        <li><a href="#">Example Resource Link 2</a></li>
+      </ul>
+    </section>
+
+    <section class="comments-section">
+      <h3>Discussion / Comments</h3>
+      <div class="comment-box">
+        <textarea placeholder="Write a comment..."></textarea>
+        <button class="btn">Submit</button>
+      </div>
+
+      <div class="comments-list">
+        <div class="comment">
+          <p><strong>Student A:</strong> This week was helpful!</p>
+        </div>
+        <div class="comment">
+          <p><strong>Student B:</strong> I need clarification on the second part.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
+<!-- File 3: task3.js (Phase 2 Skeleton) -->
+// Phase 2 JavaScript placeholder for Week Pages
+
+// Form validation for comment box
+function submitComment() {
+  const textarea = document.querySelector('textarea');
+  if (!textarea.value.trim()) {
+    alert('Comment cannot be empty');
+    return;
+  }
+  alert('Comment submitted (Phase 2 placeholder)');
+  textarea.value = '';
+}
