@@ -42,7 +42,6 @@
     </div>
 </header>
 
-
 <main>
 
 <section>
@@ -59,10 +58,11 @@
         <h3>Create New Topic</h3>
 
         <form id="newThreadForm">
+            <label for="threadTitle">Topic Title</label>
             <input id="threadTitle" name="title" placeholder="Topic Title">
 
-            <textarea id="threadMsg" name="message"
-                      placeholder="Write your message..."></textarea>
+            <label for="threadMsg">Message</label>
+            <textarea id="threadMsg" name="message" placeholder="Write your message..."></textarea>
 
             <div style="display:flex;gap:10px;margin-top:10px;">
                 <button type="button" class="btn btn-primary" id="createThread">
@@ -74,7 +74,6 @@
 
     </div>
 </section>
-
 
 <aside>
     <div class="card">
@@ -95,4 +94,3 @@
 </div>
 </body>
 </html>
-
