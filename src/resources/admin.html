@@ -1,95 +1,87 @@
+<!--
+  Requirement: Create the Admin View for Course Resources
+
+  Instructions:
+  Fill in the HTML elements as described in the comments.
+  This page allows the teacher (admin) to perform full CRUD operations on course resources.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Resources</title>
-    <!-- ربط إطار عمل CSS (Bootstrap) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
+    
+    <!-- TODO: Add the responsive 'viewport' meta tag.
+         The 'name' should be 'viewport' and the 'content' should set the 'width' to 'device-width'
+         and the 'initial-scale' to '1.0'. -->
+
+    <!-- TODO: Add a title, e.g., "Manage Resources". -->
+
+    <!-- TODO: Link to your CSS framework or stylesheet. -->
 </head>
-<body class="bg-light">
+<body>
 
-    <!-- Header -->
-    <header class="bg-primary text-white text-center py-4 mb-4">
-        <h1>Manage Course Resources</h1>
-    </header>
+    <!-- TODO: Create a 'header' with a main heading ('h1') "Manage Course Resources". -->
 
-    <!-- Main content -->
-    <main class="container">
+    <!-- TODO: Create the 'main' content area. -->
 
         <!-- Section 1: Add/Edit Resource Form -->
-        <section class="mb-5">
-            <h2>Add a New Resource</h2>
-            <form id="resource-form" action="#" class="border p-4 bg-white rounded shadow-sm">
-                <fieldset>
-                    <legend>Resource Details</legend>
+        <!-- TODO: Create a 'section' for the form. -->
+            <!-- TODO: Add a sub-heading ('h2') "Add a New Resource". -->
 
-                    <div class="mb-3">
-                        <label for="resource-title" class="form-label">Resource Title</label>
-                        <input type="text" id="resource-title" class="form-control" required>
-                    </div>
+            <!-- TODO: Create a 'form' with an id "resource-form". Action can be '#'. -->
+                <!-- TODO: Use a 'fieldset' to group the form controls. -->
+                    <!-- TODO: Add a 'legend', e.g., "Resource Details". -->
 
-                    <div class="mb-3">
-                        <label for="resource-description" class="form-label">Resource Description</label>
-                        <textarea id="resource-description" class="form-control" rows="3"></textarea>
-                    </div>
+                    <!-- TODO: Add a 'label' and 'input' for the resource title.
+                         - label 'for': "resource-title"
+                         - input 'id': "resource-title", type="text", required -->
 
-                    <div class="mb-3">
-                        <label for="resource-link" class="form-label">Resource Link</label>
-                        <input type="url" id="resource-link" class="form-control" required>
-                    </div>
+                    <!-- TODO: Add a 'label' and 'textarea' for the resource description.
+                         - label 'for': "resource-description"
+                         - textarea 'id': "resource-description" -->
+                    
+                    <!-- TODO: Add a 'label' and 'input' for the resource link.
+                         - label 'for': "resource-link"
+                         - input 'id': "resource-link", type="url", required -->
 
-                    <button type="submit" id="add-resource" class="btn btn-success">Add Resource</button>
-                </fieldset>
-            </form>
-        </section>
+                    <!-- TODO: Add a 'button' to submit the form.
+                         - id="add-resource", type="submit", Text: "Add Resource" -->
+                <!-- End of fieldset. -->
+            <!-- End of form. -->
+        <!-- End of form section. -->
+
 
         <!-- Section 2: Existing Resources List -->
-        <section>
-            <h2>Existing Resources</h2>
-            <table id="resources-table" class="table table-striped table-bordered bg-white shadow-sm">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Row 1 -->
-                    <tr>
-                        <td>Chapter 1 Notes</td>
-                        <td>Introduction to HTML and basic tags.</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm me-2">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Row 2 -->
-                    <tr>
-                        <td>Lecture Slides - Week 2</td>
-                        <td>Slides covering CSS fundamentals.</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm me-2">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Row 3 -->
-                    <tr>
-                        <td>External Resource: W3Schools</td>
-                        <td>Useful online tutorials for web development.</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm me-2">Edit</button>
-                            <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+        <!-- TODO: Create a 'section' to display the list of current resources. -->
+            <!-- TODO: Add a sub-heading ('h2') "Existing Resources". -->
 
-    </main>
+            <!-- TODO: Create a 'table' with id "resources-table". -->
+                <!-- TODO: Create a 'thead' and a 'tr' inside it. -->
+                    <!-- TODO: Add 'th' elements for "Title", "Description", and "Actions". -->
+                
+                <!-- TODO: Create a 'tbody' for the data. -->
+                    <!-- TODO: Add 2-3 rows of dummy data to see the structure. -->
+                    <!-- Example Row 1: -->
+                    <!-- TODO: Create a 'tr' for the first resource. -->
+                        <!-- TODO: Add 'td' cells for a title (e.g., "Chapter 1 Notes") and a description. -->
+                        
+                        <!-- TODO: Add a 'td' containing the action buttons. -->
+                            <!-- TODO: Add an "Edit" button. -->
+                            <!-- TODO: Add a "Delete" button. -->
+                        <!-- End of actions 'td'. -->
+                    <!-- End of the row. -->
 
-    <!-- Bootstrap JS (اختياري إذا كنت تحتاج أزرار JS) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+                    <!-- Example Row 2: -->
+                    <!-- TODO: Create another 'tr' for a second resource (e.g., a web link). -->
+                        <!-- TODO: Add 'td' cells for the title and description. -->
+                        <!-- TODO: Add a 'td' with "Edit" and "Delete" buttons. -->
+                    <!-- End of the row. -->
+
+                <!-- End of tbody. -->
+            <!-- End of table. -->
+        <!-- End of resources list section. -->
+
+    <!-- End of main. -->
 </body>
 </html>
+شنوهي 
