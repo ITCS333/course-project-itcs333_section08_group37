@@ -17,8 +17,10 @@ let assignments = [];
 
 // --- Element Selections ---
 // TODO: Select the assignment form ('#assignment-form').
+const assignmentForm = document.querySelector('#assignment-form');
 
 // TODO: Select the assignments table body ('#assignments-tbody').
+const assignmentsTableBody = document.querySelector('#assignments-tbody');
 
 // --- Functions ---
 
@@ -34,6 +36,18 @@ let assignments = [];
  */
 function createAssignmentRow(assignment) {
   // ... your implementation here ...
+  const tr = document.createElement('tr');
+
+  tr.innerHTML = `
+    <td>${assignment.title}</td>
+    <td>${assignment.dueDate}</td>
+    <td>
+      <button class="edit-btn" data-id="${assignment.id}">Edit</button>
+      <button class="delete-btn" data-id="${assignment.id}">Delete</button>
+    </td>
+  `;
+
+  return tr;
 }
 
 /**
@@ -46,6 +60,12 @@ function createAssignmentRow(assignment) {
  */
 function renderTable() {
   // ... your implementation here ...
+  assignmentsTableBody.innerHTML = '';
+
+  assignments.forEach(asg => {
+    const row = createAssignmentRow(asg);
+    assignmentsTableBody.appendChild(row);
+  });
 }
 
 /**
@@ -61,6 +81,24 @@ function renderTable() {
  */
 function handleAddAssignment(event) {
   // ... your implementation here ...
+  event.preventDefault();
+
+  const title = document.querySelector('#assignment-title').value;
+  const description = document.querySelector('#assignment-description').value;
+  const dueDate = document.querySelector('#assignment-due-date').value;
+  const files = document.querySelector('#assignment-files').value;
+
+  const newAssignment = {
+    id: `asg_${Date.now()}`,
+    title,
+    description,
+    dueDate,
+    files
+  };
+
+  assignments.push(newAssignment);
+  renderTable();
+  assignmentForm.reset();
 }
 
 /**
@@ -75,6 +113,11 @@ function handleAddAssignment(event) {
  */
 function handleTableClick(event) {
   // ... your implementation here ...
+  if (event.target.classList.contains('delete-btn')) {
+    const id = event.target.getAttribute('data-id');
+    assignments = assignments.filter(asg => asg.id !== id);
+    renderTable();
+  }
 }
 
 /**
@@ -89,6 +132,13 @@ function handleTableClick(event) {
  */
 async function loadAndInitialize() {
   // ... your implementation here ...
+  const res = await fetch('assignments.json');
+  assignments = await res.json();
+
+  renderTable();
+
+  assignmentForm.addEventListener('submit', handleAddAssignment);
+  assignmentsTableBody.addEventListener('click', handleTableClick);
 }
 
 // --- Initial Page Load ---
