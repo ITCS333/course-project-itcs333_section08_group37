@@ -1,47 +1,70 @@
 /*
   Requirement: Populate the "Weekly Course Breakdown" list page.
-
-  Instructions:
-  1. Link this file to `list.html` using:
-     <script src="list.js" defer></script>
-
-  2. In `list.html`, add an `id="week-list-section"` to the
-     <section> element that will contain the weekly articles.
-
-  3. Implement the TODOs below.
 */
 
 // --- Element Selections ---
-// TODO: Select the section for the week list ('#week-list-section').
+const listSection = document.querySelector("#week-list-section");
 
 // --- Functions ---
 
 /**
- * TODO: Implement the createWeekArticle function.
- * It takes one week object {id, title, startDate, description}.
- * It should return an <article> element matching the structure in `list.html`.
- * - The "View Details & Discussion" link's `href` MUST be set to `details.html?id=${id}`.
- * (This is how the detail page will know which week to load).
+ * Create an <article> for a single week.
  */
 function createWeekArticle(week) {
-  // ... your implementation here ...
+  const article = document.createElement("article");
+
+  const titleEl = document.createElement("h2");
+  titleEl.textContent = week.title || "Untitled week";
+
+  const dateEl = document.createElement("p");
+  if (week.startDate) {
+    dateEl.textContent = "Starts on: " + week.startDate;
+  } else {
+    dateEl.textContent = "Starts on: N/A";
+  }
+
+  const descEl = document.createElement("p");
+  descEl.textContent = week.description || "";
+
+  const linkEl = document.createElement("a");
+  linkEl.href = details.html?id=${week.id};
+  linkEl.textContent = "View Details & Discussion";
+
+  article.appendChild(titleEl);
+  article.appendChild(dateEl);
+  article.appendChild(descEl);
+  article.appendChild(linkEl);
+
+  return article;
 }
 
 /**
- * TODO: Implement the loadWeeks function.
- * This function needs to be 'async'.
- * It should:
- * 1. Use `fetch()` to get data from 'weeks.json'.
- * 2. Parse the JSON response into an array.
- * 3. Clear any existing content from `listSection`.
- * 4. Loop through the weeks array. For each week:
- * - Call `createWeekArticle()`.
- * - Append the returned <article> element to `listSection`.
+ * Load weeks from weeks.json and render them.
  */
 async function loadWeeks() {
-  // ... your implementation here ...
+  if (!listSection) return;
+
+  try {
+    const response = await fetch("weeks.json");
+    const weeksData = await response.json();
+
+    listSection.innerHTML = "";
+
+    if (Array.isArray(weeksData)) {
+      weeksData.forEach((week) => {
+        const article = createWeekArticle(week);
+        listSection.appendChild(article);
+      });
+    }
+  } catch (error) {
+    console.error("Error loading weeks:", error);
+    // ممكن نحط رسالة بسيطة في الصفحة لو حبيت
+    const errorMsg = document.createElement("p");
+    errorMsg.textContent = "Could not load weekly breakdown.";
+    listSection.innerHTML = "";
+    listSection.appendChild(errorMsg);
+  }
 }
 
 // --- Initial Page Load ---
-// Call the function to populate the page.
 loadWeeks();
