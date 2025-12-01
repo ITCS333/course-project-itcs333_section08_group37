@@ -4,101 +4,103 @@ let weeks = [];
 // --- Element Selections ---
 const weekForm = document.querySelector('#week-form');
 const weeksTableBody = document.querySelector('#weeks-tbody');
-const titleInput = document.querySelector('#week-title');
-const startDateInput = document.querySelector('#week-start-date');
-const descriptionInput = document.querySelector('#week-description');
-const linksInput = document.querySelector('#week-links');
 
 // --- Functions ---
-function createWeekRow(week) {
-  const row = document.createElement('tr');
 
+// إنشاء صف جديد في الجدول
+function createWeekRow(week) {
+  const tr = document.createElement('tr');
+
+  // عنوان الأسبوع
   const tdTitle = document.createElement('td');
   tdTitle.textContent = week.title;
 
+  // الوصف
   const tdDesc = document.createElement('td');
   tdDesc.textContent = week.description;
 
+  // أزرار الأكشن
   const tdActions = document.createElement('td');
-
   const editBtn = document.createElement('button');
   editBtn.textContent = "Edit";
-  editBtn.className = "edit-btn";
-  editBtn.setAttribute("data-id", week.id);
+  editBtn.classList.add("edit-btn");
+  editBtn.dataset.id = week.id;
 
   const deleteBtn = document.createElement('button');
   deleteBtn.textContent = "Delete";
-  deleteBtn.className = "delete-btn";
-  deleteBtn.setAttribute("data-id", week.id);
+  deleteBtn.classList.add("delete-btn");
+  deleteBtn.dataset.id = week.id;
 
   tdActions.appendChild(editBtn);
   tdActions.appendChild(deleteBtn);
 
-  row.appendChild(tdTitle);
-  row.appendChild(tdActions);
-  row.appendChild(tdDesc);
+  // إضافة الأعمدة للصف
+  tr.appendChild(tdTitle);
+  tr.appendChild(tdDesc);
+  tr.appendChild(tdActions);
 
-  return row;
+  return tr;
 }
 
+// عرض الجدول
 function renderTable() {
   weeksTableBody.innerHTML = "";
-
-  for (let i = 0; i < weeks.length; i++) {
-    const newRow = createWeekRow(weeks[i]);
-    weeksTableBody.appendChild(newRow);
-  }
+  weeks.forEach(week => {
+    const row = createWeekRow(week);
+    weeksTableBody.appendChild(row);
+  });
 }
 
+// إضافة أسبوع جديد
 function handleAddWeek(event) {
   event.preventDefault();
 
-  const title = titleInput.value;
-  const startDate = startDateInput.value;
-  const description = descriptionInput.value;
-  const linksText = linksInput.value;
-  const linksArray = linksText.split("\n");
+  const title = document.querySelector('#week-title').value.trim();
+  const startDate = document.querySelector('#week-start-date').value;
+  const description = document.querySelector('#week-description').value.trim();
+  const linksText = document.querySelector('#week-links').value.trim();
+
+  if (!title || !startDate) return;
+
+  const links = linksText ? linksText.split("\n") : [];
 
   const newWeek = {
     id: `week_${Date.now()}`,
-    title: title,
-    startDate: startDate,
-    description: description,
-    links: linksArray
+    title,
+    startDate,
+    description,
+    links
   };
 
   weeks.push(newWeek);
-
   renderTable();
-
   weekForm.reset();
 }
 
+// حذف أسبوع
 function handleTableClick(event) {
   if (event.target.classList.contains("delete-btn")) {
-    const weekId = event.target.getAttribute("data-id");
-    weeks = weeks.filter(week => week.id !== weekId);
-
+    const id = event.target.dataset.id;
+    weeks = weeks.filter(week => week.id !== id);
     renderTable();
   }
+  // مبدئياً زر Edit مش مفعل، ممكن نضيفه لاحقاً
 }
 
+// تحميل البيانات من ملف weeks.json
 async function loadAndInitialize() {
-  const response = await fetch('weeks.json');
-  weeks = await response.json();
+  try {
+    const res = await fetch('weeks.json');
+    const data = await res.json();
+    weeks = data;
+    renderTable();
 
-  renderTable();
-
-  weekForm.addEventListener('submit', handleAddWeek);
-  weeksTableBody.addEventListener('click', handleTableClick);
-  weeksTableBody.addEventListener('click', handleTableClick);
-  weeksTableBody.addEventListener('click', handleTableClick);
-  weeksTableBody.addEventListener('click', handleAddWeek);
-  weeksTableBody.addEventListener('click', renderTable);
-  weeksTableBody.addEventListener('click', renderComments);
-  weeksTableBody.addEventListener('click', handleTableClick);
-
+    weekForm.addEventListener('submit', handleAddWeek);
+    weeksTableBody.addEventListener('click', handleTableClick);
+  } catch (err) {
+    console.error("Error loading weeks:", err);
   }
 }
 
+// --- Initial Page Load ---
 loadAndInitialize();
