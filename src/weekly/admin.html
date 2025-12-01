@@ -1,59 +1,59 @@
-<!--
-  Requirement: Create the Admin View for the Weekly Breakdown
-
-  Instructions:
-  Fill in the HTML elements as described in the comments.
-  This page allows the teacher (admin) to perform full CRUD operations on the weekly course content.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
     <title>Manage Weekly Breakdown</title>
-    <link rel="stylesheet" href="style.css">
+
+    <!-- CSS (ممكن تستخدم Bootstrap أو ملفك الخاص) -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- Header -->
     <header>
         <h1>Manage Weekly Breakdown</h1>
     </header>
 
+    <!-- Main Content -->
     <main>
 
         <!-- Section 1: Add/Edit Week Form -->
         <section>
             <h2>Add a New Week</h2>
-
             <form id="week-form" action="#">
                 <fieldset>
                     <legend>Weekly Details</legend>
 
-                    <label for="week-title">Week Title:</label><br>
-                    <input id="week-title" type="text" required placeholder="Week 1: Introduction to HTML"><br><br>
+                    <!-- Week Title -->
+                    <label for="week-title">Week Title:</label>
+                    <input id="week-title" type="text" placeholder="Week 1: Introduction to HTML" required>
 
-                    <label for="week-start-date">Start Date:</label><br>
-                    <input id="week-start-date" type="date" required><br><br>
+                    <!-- Start Date -->
+                    <label for="week-start-date">Start Date:</label>
+                    <input id="week-start-date" type="date" required>
 
-                    <label for="week-description">Description & Notes:</label><br>
-                    <textarea id="week-description" rows="5" placeholder="Write the details for this week here..."></textarea><br><br>
+                    <!-- Description -->
+                    <label for="week-description">Description & Notes:</label>
+                    <textarea id="week-description" rows="5"></textarea>
 
-                    <label for="week-links">Exercises & Resources (one link per line):</label><br>
-                    <textarea id="week-links" rows="3" placeholder="https://example.com"></textarea><br><br>
+                    <!-- Links -->
+                    <label for="week-links">Exercises & Resources (one per line):</label>
+                    <textarea id="week-links" rows="3"></textarea>
 
+                    <!-- Submit Button -->
                     <button id="add-week" type="submit">Add Week</button>
-
                 </fieldset>
             </form>
         </section>
 
-        <br>
-
         <!-- Section 2: Existing Weekly Entries -->
         <section>
             <h2>Current Weekly Breakdown</h2>
-
-            <table id="weeks-table" border="1" width="100%">
+            <table id="weeks-table" border="1">
                 <thead>
                     <tr>
                         <th>Week Title</th>
@@ -61,23 +61,23 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-
                 <tbody id="weeks-tbody">
+                    <!-- Dummy Row 1 -->
                     <tr>
                         <td>Week 1: Intro to HTML</td>
-                        <td>Basics of HTML and structure.</td>
+                        <td>Basic structure and tags</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
-
+                    <!-- Dummy Row 2 -->
                     <tr>
                         <td>Week 2: Intro to CSS</td>
-                        <td>Basic styling and selectors.</td>
+                        <td>Selectors and styling basics</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button class="edit-btn">Edit</button>
+                            <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -86,5 +86,7 @@
 
     </main>
 
+    <!-- JS -->
+    <script src="admin.js" defer></script>
 </body>
 </html>
