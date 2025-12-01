@@ -1,76 +1,85 @@
 <!--
   Requirement: Create the Dedicated Page for a Single Week
+
+  Instructions:
+  This page displays the full details for one week and allows for discussion.
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Basic meta tags -->
+    <!-- Meta tags for charset and responsive view -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Title -->
+    <!-- Title of the page -->
     <title>Week Details</title>
 
-    <!-- Stylesheet (adjust path if needed) -->
+    <!-- Link to stylesheet -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- Header section -->
     <header>
-        <h1>Week 1: Introduction to HTML</h1>
+        <h1 id="week-title">Week 1: Introduction to HTML</h1>
     </header>
 
     <!-- Main content -->
     <main>
 
-        <!-- Section 1: Weekly Information -->
+        <!-- Weekly details article -->
         <article>
-            <p><strong>Starts on:</strong> 2024-10-01</p>
+            <!-- Start date -->
+            <p id="week-start-date">Starts on: 2025-10-27</p>
 
-            <h2>Description &amp; Notes</h2>
-            <p>
-                In this week we focus on what HTML is, how a basic page is structured,
-                and the most common tags that we will use all the time, such as
-                headings, paragraphs, links and images.
+            <!-- Description section -->
+            <h2>Description & Notes</h2>
+            <p id="week-description">
+                This is a dummy description for the week. The real content will be loaded using JavaScript later.
+                For now, this text is just here to show the layout of the page.
             </p>
 
-            <h2>Exercises &amp; Resources</h2>
-            <ul>
+            <!-- Resources section -->
+            <h2>Exercises & Resources</h2>
+            <ul id="week-links-list">
                 <li><a href="#">Exercise 1 - Basic Tags</a></li>
-                <li><a href="#">Exercise 2 - Building a Simple Page</a></li>
-                <li><a href="#">MDN: HTML Basics</a></li>
+                <li><a href="#">Exercise 2 - Page Structure</a></li>
             </ul>
         </article>
 
-        <!-- Section 2: Discussion Forum -->
+        <!-- Discussion forum section -->
         <section id="discussion-forum">
+            <!-- Discussion heading -->
             <h2>Discussion</h2>
 
-            <!-- Existing comments -->
-            <div id="comments-list">
+            <!-- Dummy comments for visualizing structure -->
+            <div id="comment-list">
                 <article>
-                    <p>I have a question about when exactly we need the &lt;header&gt; tag.</p>
+                    <p>I have a question about the 'header' tag.</p>
                     <footer>Posted by: John Doe</footer>
                 </article>
 
                 <article>
-                    <p>The example in slide 5 was helpful, but I am still confused about block vs inline elements.</p>
-                    <footer>Posted by: Sara Ahmed</footer>
+                    <p>Can you explain more about semantic tags?</p>
+                    <footer>Posted by: Sarah Ahmed</footer>
                 </article>
             </div>
 
-            <!-- Add a comment form -->
-            <form action="#">
+            <!-- Comment form -->
+            <form id="comment-form" action="#">
                 <fieldset>
                     <legend>Ask a Question</legend>
 
-                    <label for="new-comment">Your Comment</label>
-                    <textarea id="new-comment" required></textarea>
+                    <label for="new-comment">Your Comment:</label><br>
+                    <textarea id="new-comment-text" required rows="4" placeholder="Write your question or comment here..."></textarea><br><br>
 
                     <button type="submit">Post Comment</button>
                 </fieldset>
             </form>
+
         </section>
+
     </main>
+
 </body>
 </html>
