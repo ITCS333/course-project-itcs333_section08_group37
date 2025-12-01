@@ -8,26 +8,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- charset -->
     <meta charset="UTF-8">
-
-    <!-- responsive viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- page title -->
     <title>Manage Weekly Breakdown</title>
-
-    <!-- simple stylesheet (change the path if you have a different file) -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Manage Weekly Breakdown</h1>
     </header>
 
-    <!-- Main Content -->
     <main>
 
         <!-- Section 1: Add/Edit Week Form -->
@@ -38,50 +29,31 @@
                 <fieldset>
                     <legend>Weekly Details</legend>
 
-                    <!-- Week title -->
-                    <label for="week-title">Week Title</label>
-                    <input
-                        id="week-title"
-                        type="text"
-                        placeholder="Week 1: Introduction to HTML"
-                        required
-                    >
+                    <label for="week-title">Week Title:</label><br>
+                    <input id="week-title" type="text" required placeholder="Week 1: Introduction to HTML"><br><br>
 
-                    <!-- Start date -->
-                    <label for="week-start-date">Start Date</label>
-                    <input
-                        id="week-start-date"
-                        type="date"
-                        required
-                    >
+                    <label for="week-start-date">Start Date:</label><br>
+                    <input id="week-start-date" type="date" required><br><br>
 
-                    <!-- Description -->
-                    <label for="week-description">Description &amp; Notes</label>
-                    <textarea
-                        id="week-description"
-                        rows="5"
-                        placeholder="Overview of what will be covered this week..."
-                    ></textarea>
+                    <label for="week-description">Description & Notes:</label><br>
+                    <textarea id="week-description" rows="5" placeholder="Write the details for this week here..."></textarea><br><br>
 
-                    <!-- Links -->
-                    <label for="week-links">Exercises / Resources (one link per line)</label>
-                    <textarea
-                        id="week-links"
-                        rows="3"
-                        placeholder="https://example.com/ex1&#10;https://example.com/notes"
-                    ></textarea>
+                    <label for="week-links">Exercises & Resources (one link per line):</label><br>
+                    <textarea id="week-links" rows="3" placeholder="https://example.com"></textarea><br><br>
 
-                    <!-- Submit button -->
                     <button id="add-week" type="submit">Add Week</button>
+
                 </fieldset>
             </form>
         </section>
+
+        <br>
 
         <!-- Section 2: Existing Weekly Entries -->
         <section>
             <h2>Current Weekly Breakdown</h2>
 
-            <table id="weeks-table">
+            <table id="weeks-table" border="1" width="100%">
                 <thead>
                     <tr>
                         <th>Week Title</th>
@@ -89,32 +61,30 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+
                 <tbody id="weeks-tbody">
-                    <!-- Dummy row 1 -->
                     <tr>
                         <td>Week 1: Intro to HTML</td>
-                        <td>Basic structure of a web page and common tags.</td>
+                        <td>Basics of HTML and structure.</td>
                         <td>
-                            <button class="edit-btn" data-id="dummy1">Edit</button>
-                            <button class="delete-btn" data-id="dummy1">Delete</button>
+                            <button>Edit</button>
+                            <button>Delete</button>
                         </td>
                     </tr>
 
-                    <!-- Dummy row 2 -->
                     <tr>
-                        <td>Week 2: CSS Basics</td>
-                        <td>Selectors, colors, fonts and simple layouts.</td>
+                        <td>Week 2: Intro to CSS</td>
+                        <td>Basic styling and selectors.</td>
                         <td>
-                            <button class="edit-btn" data-id="dummy2">Edit</button>
-                            <button class="delete-btn" data-id="dummy2">Delete</button>
+                            <button>Edit</button>
+                            <button>Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </section>
+
     </main>
 
-    <!-- JS -->
-    <script src="admin.js" defer></script>
 </body>
 </html>
