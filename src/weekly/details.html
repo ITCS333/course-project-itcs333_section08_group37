@@ -1,85 +1,77 @@
-<!--
-  Requirement: Create the Dedicated Page for a Single Week
-
-  Instructions:
-  This page displays the full details for one week and allows for discussion.
--->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags for charset and responsive view -->
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Title of the page -->
+    <!-- Title -->
     <title>Week Details</title>
 
-    <!-- Link to stylesheet -->
+    <!-- CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header section -->
+    <!-- Header -->
     <header>
         <h1 id="week-title">Week 1: Introduction to HTML</h1>
     </header>
 
-    <!-- Main content -->
+    <!-- Main Content -->
     <main>
 
-        <!-- Weekly details article -->
+        <!-- Section 1: Weekly Information -->
         <article>
-            <!-- Start date -->
             <p id="week-start-date">Starts on: 2025-10-27</p>
 
-            <!-- Description section -->
             <h2>Description & Notes</h2>
             <p id="week-description">
-                This is a dummy description for the week. The real content will be loaded using JavaScript later.
-                For now, this text is just here to show the layout of the page.
+                This week covers the fundamental building blocks of the web: HTML. We will explore semantic tags, document structure, and basic elements like headings, paragraphs, links, and images.
             </p>
 
-            <!-- Resources section -->
             <h2>Exercises & Resources</h2>
             <ul id="week-links-list">
                 <li><a href="#">Exercise 1 - Basic Tags</a></li>
-                <li><a href="#">Exercise 2 - Page Structure</a></li>
+                <li><a href="#">Resource: MDN HTML Guide</a></li>
             </ul>
         </article>
 
-        <!-- Discussion forum section -->
+        <!-- Section 2: Discussion Forum -->
         <section id="discussion-forum">
-            <!-- Discussion heading -->
             <h2>Discussion</h2>
 
-            <!-- Dummy comments for visualizing structure -->
+            <!-- Existing Comments -->
             <div id="comment-list">
+                <!-- Dummy Comment 1 -->
                 <article>
                     <p>I have a question about the 'header' tag.</p>
                     <footer>Posted by: John Doe</footer>
                 </article>
 
+                <!-- Dummy Comment 2 -->
                 <article>
-                    <p>Can you explain more about semantic tags?</p>
-                    <footer>Posted by: Sarah Ahmed</footer>
+                    <p>Should we use semantic tags for all sections?</p>
+                    <footer>Posted by: Fatema Ahmed</footer>
                 </article>
             </div>
 
-            <!-- Comment form -->
+            <!-- Add a Comment Form -->
             <form id="comment-form" action="#">
                 <fieldset>
                     <legend>Ask a Question</legend>
 
-                    <label for="new-comment">Your Comment:</label><br>
-                    <textarea id="new-comment-text" required rows="4" placeholder="Write your question or comment here..."></textarea><br><br>
+                    <label for="new-comment-text">Your Comment:</label>
+                    <textarea id="new-comment-text" rows="4" required></textarea>
 
                     <button type="submit">Post Comment</button>
                 </fieldset>
             </form>
-
         </section>
 
     </main>
 
+    <!-- JS -->
+    <script src="details.js" defer></script>
 </body>
 </html>
