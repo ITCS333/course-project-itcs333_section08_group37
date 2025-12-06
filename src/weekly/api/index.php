@@ -21,10 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-// Include DB connection (افترضنا ملف Database.php موجود)
+
+// Include DB connection
 require_once '../config/Database.php';
-$database = new Database();
-$db = $database->getConnection();
+$db = getDBConnection();
+
 
 // Request method + body
 $method = $_SERVER['REQUEST_METHOD'];
