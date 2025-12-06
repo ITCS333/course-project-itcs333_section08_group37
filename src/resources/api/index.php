@@ -11,12 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-$host = "localhost";
-$db_name = "course_resources"; 
-$username = "root";            
-$password = "";                
-
-$method = $_SERVER['REQUEST_METHOD'];
+require_once '../config/Database.php';
+$database = new Database();
+$db = $database->getConnection();
 
 
 $input = json_decode(file_get_contents('php://input'), true);

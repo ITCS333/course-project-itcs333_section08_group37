@@ -7,71 +7,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
-    
-    <!-- TODO: Add the responsive 'viewport' meta tag. -->
-
-    <!-- TODO: Add a title, e.g., "Discussion Board". -->
-
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Discussion Board</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') "General Discussion Board". -->
+    <header class="container">
+        <h1>General Discussion Board</h1>
+        <p>Browse every topic or start a new conversation.</p>
+    </header>
 
-    <!-- TODO: Create the 'main' content area. -->
+    <main class="container">
 
-        <!-- Section 1: Create a New Topic -->
-        <!-- TODO: Create a 'section' for the "new topic" form. -->
-            <!-- TODO: Add a sub-heading ('h2') "Start a New Topic". -->
+        <section aria-labelledby="new-topic-heading">
+            <h2 id="new-topic-heading">Start a New Topic</h2>
 
-            <!-- TODO: Create a 'form' with an id "new-topic-form". Action can be '#'. -->
-                <!-- TODO: Use a 'fieldset' to group the form controls. -->
-                    <!-- TODO: Add a 'legend', e.g., "New Topic Details". -->
+            <form id="new-topic-form" action="#">
+                <fieldset>
+                    <legend>New Topic Details</legend>
 
-                    <!-- TODO: Add a 'label' and 'input' for the topic subject.
-                         - label 'for': "topic-subject"
-                         - input 'id': "topic-subject", type="text", required -->
+                    <label for="topic-subject">Subject</label>
+                    <input id="topic-subject" type="text" name="subject" placeholder="e.g., Question about CSS Grid" required>
 
-                    <!-- TODO: Add a 'label' and 'textarea' for the main message.
-                         - label 'for': "topic-message"
-                         - textarea 'id': "topic-message", rows="6", required -->
+                    <label for="topic-message">Message</label>
+                    <textarea id="topic-message" name="message" rows="6" placeholder="Explain what you want to discuss" required></textarea>
 
-                    <!-- TODO: Add a 'button' to submit the form.
-                         - id="create-topic", type="submit", Text: "Create Topic" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of form section. -->
+                    <button id="create-topic" type="submit">Create Topic</button>
+                </fieldset>
+            </form>
+        </section>
 
 
-        <!-- Section 2: Existing Topics -->
-        <!-- TODO: Create a 'section' to display the list of current topics. -->
-            <!-- TODO: Add a sub-heading ('h2') "All Topics". -->
+        <section aria-labelledby="all-topics-heading">
+            <h2 id="all-topics-heading">All Topics</h2>
             
-            <!-- TODO: Add a container (like a 'div') to hold the list of topics. -->
-                <!-- TODO: Add 2-3 dummy topics using the structure below. -->
+            <div id="topic-list-container" class="grid">
+                <article>
+                    <h3><a href="topic.html?id=topic_101">Question about CSS Flexbox</a></h3>
+                    <footer>Posted by: Alex on 2024-01-15</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_101">Delete</button>
+                    </div>
+                </article>
 
-                <!-- Example Topic 1: -->
-                <!-- TODO: Use an 'article' for each topic. -->
-                    <!-- TODO: Add a heading ('h3') containing an anchor tag ('a') linking to the detail page.
-                         - The link's 'href' can be "topic-detail.html" for now.
-                         - The link text should be a dummy topic title, e.g., "Question about CSS Flexbox". -->
-                    
-                    <!-- TODO: Use a 'footer' element for metadata. -->
-                        <!-- TODO: Add text like "Posted by: Student Name on YYYY-MM-DD". -->
-                    <!-- End of footer. -->
+                <article>
+                    <h3><a href="topic.html?id=topic_102">Best resources to learn JavaScript</a></h3>
+                    <footer>Posted by: Taylor on 2024-02-02</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_102">Delete</button>
+                    </div>
+                </article>
 
-                    <!-- TODO: Add a container (e.g., a 'div') for action buttons. -->
-                        <!-- TODO: Add an "Edit" button/link. -->
-                        <!-- TODO: Add a "Delete" button/link. -->
-                        <!-- NOTE: For the exercise, you can add these for all topics. In a real app,
-                             these buttons would only be visible to the topic's author or the admin. -->
-                    <!-- End of actions container. -->
-                <!-- End of article. -->
-            
-            <!-- End of topics container. -->
-        <!-- End of list section. -->
+                <article>
+                    <h3><a href="topic.html?id=topic_103">Debugging tips for PHP beginners</a></h3>
+                    <footer>Posted by: Jordan on 2024-03-10</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_103">Delete</button>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-    <!-- End of main. -->
+    </main>
+
+    <script src="board.js" defer></script>
 </body>
 </html>
