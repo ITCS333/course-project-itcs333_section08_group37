@@ -61,3 +61,62 @@
     <!-- End of main. -->
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Topic Details</title>
+
+    <link rel="stylesheet" href="../../common/styles.css"> </head>
+<body>
+    <header>
+        <h1 id="topic-subject">Loading Topic...</h1>
+    </header>
+
+    <main class="container">
+
+        <article id="original-post" class="topic-post">
+            <p id="op-message">Loading message...</p>
+            
+            <footer id="op-footer"></footer>
+            
+            <div class="topic-actions">
+                <a href="#" id="edit-topic-btn">Edit</a>
+                <button id="delete-topic-btn">Delete</button>
+            </div>
+        </article>
+
+        <hr>
+
+        <section id="replies-section">
+            <h2>Replies</h2>
+
+            <div id="reply-list-container">
+                <p>Loading replies...</p>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="reply-form-section">
+            <h2>Post a Reply</h2>
+            
+            <form id="reply-form" action="#">
+                <fieldset>
+                    <legend>Your Reply</legend>
+
+                    <label for="new-reply">Reply Message</label>
+                    <textarea id="new-reply" rows="4" required></textarea>
+                    
+                    <button type="submit">Post Reply</button>
+                </fieldset>
+            </form>
+        </section>
+
+    </main>
+    
+    <script src="topic.js" defer></script>
+</body>
+</html>
