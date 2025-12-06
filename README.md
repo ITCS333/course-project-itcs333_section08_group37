@@ -3,11 +3,13 @@
 # ITCS### Course Page
 
 ## The names and student IDs of all team members.
+Fatema jehad yateem - 202105712
 Zahraa Sayed Mohammed Salman - 202005540
 Majd Abdulmajeed Maslamani - 202106579 
 Mariam Jaffer Habib - 20195182 -
 Rawan Jalal Sayed Husain - 202100943 
 ## A table indicating which student was responsible for which task.
+Fatema jehad yateem - 202105712 - Task 1
 Zahraa Sayed Mohammed Salman - 202005540 - Task 2
 Majd Abdulmajeed Maslamani - 202106579 - Task 3
 Mariam Jaffer Habib - 20195182 - Task 4
