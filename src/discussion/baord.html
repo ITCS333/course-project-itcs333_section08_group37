@@ -7,122 +7,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- TODO: Add the 'meta' tag for character encoding (UTF-8). -->
-    
-    <!-- TODO: Add the responsive 'viewport' meta tag. -->
-
-    <!-- TODO: Add a title, e.g., "Discussion Board". -->
-
-    <!-- TODO: Link to your CSS framework or stylesheet. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Discussion Board</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
 </head>
 <body>
 
-    <!-- TODO: Create a 'header' with a main heading ('h1') "General Discussion Board". -->
-
-    <!-- TODO: Create the 'main' content area. -->
-
-        <!-- Section 1: Create a New Topic -->
-        <!-- TODO: Create a 'section' for the "new topic" form. -->
-            <!-- TODO: Add a sub-heading ('h2') "Start a New Topic". -->
-
-            <!-- TODO: Create a 'form' with an id "new-topic-form". Action can be '#'. -->
-                <!-- TODO: Use a 'fieldset' to group the form controls. -->
-                    <!-- TODO: Add a 'legend', e.g., "New Topic Details". -->
-
-                    <!-- TODO: Add a 'label' and 'input' for the topic subject.
-                         - label 'for': "topic-subject"
-                         - input 'id': "topic-subject", type="text", required -->
-
-                    <!-- TODO: Add a 'label' and 'textarea' for the main message.
-                         - label 'for': "topic-message"
-                         - textarea 'id': "topic-message", rows="6", required -->
-
-                    <!-- TODO: Add a 'button' to submit the form.
-                         - id="create-topic", type="submit", Text: "Create Topic" -->
-                <!-- End of fieldset. -->
-            <!-- End of form. -->
-        <!-- End of form section. -->
-
-
-        <!-- Section 2: Existing Topics -->
-        <!-- TODO: Create a 'section' to display the list of current topics. -->
-            <!-- TODO: Add a sub-heading ('h2') "All Topics". -->
-            
-            <!-- TODO: Add a container (like a 'div') to hold the list of topics. -->
-                <!-- TODO: Add 2-3 dummy topics using the structure below. -->
-
-                <!-- Example Topic 1: -->
-                <!-- TODO: Use an 'article' for each topic. -->
-                    <!-- TODO: Add a heading ('h3') containing an anchor tag ('a') linking to the detail page.
-                         - The link's 'href' can be "topic-detail.html" for now.
-                         - The link text should be a dummy topic title, e.g., "Question about CSS Flexbox". -->
-                    
-                    <!-- TODO: Use a 'footer' element for metadata. -->
-                        <!-- TODO: Add text like "Posted by: Student Name on YYYY-MM-DD". -->
-                    <!-- End of footer. -->
-
-                    <!-- TODO: Add a container (e.g., a 'div') for action buttons. -->
-                        <!-- TODO: Add an "Edit" button/link. -->
-                        <!-- TODO: Add a "Delete" button/link. -->
-                        <!-- NOTE: For the exercise, you can add these for all topics. In a real app,
-                             these buttons would only be visible to the topic's author or the admin. -->
-                    <!-- End of actions container. -->
-                <!-- End of article. -->
-            
-            <!-- End of topics container. -->
-        <!-- End of list section. -->
-
-    <!-- End of main. -->
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>General Discussion Board</title>
-
-    <link rel="stylesheet" href="../../common/styles.css"> </head>
-<body>
-
-    <header>
+    <header class="container">
         <h1>General Discussion Board</h1>
+        <p>Browse every topic or start a new conversation.</p>
     </header>
 
     <main class="container">
 
-        <section id="new-topic-section">
-            <h2>Start a New Topic</h2>
+        <section aria-labelledby="new-topic-heading">
+            <h2 id="new-topic-heading">Start a New Topic</h2>
 
             <form id="new-topic-form" action="#">
                 <fieldset>
                     <legend>New Topic Details</legend>
 
                     <label for="topic-subject">Subject</label>
-                    <input id="topic-subject" type="text" name="subject" required>
+                    <input id="topic-subject" type="text" name="subject" placeholder="e.g., Question about CSS Grid" required>
 
                     <label for="topic-message">Message</label>
-                    <textarea id="topic-message" name="message" rows="6" required></textarea>
+                    <textarea id="topic-message" name="message" rows="6" placeholder="Explain what you want to discuss" required></textarea>
 
                     <button id="create-topic" type="submit">Create Topic</button>
                 </fieldset>
             </form>
         </section>
 
-        <hr>
 
-        <section id="existing-topics-section">
-            <h2>All Topics</h2>
+        <section aria-labelledby="all-topics-heading">
+            <h2 id="all-topics-heading">All Topics</h2>
             
-            <div id="topic-list-container">
-                <p>Loading topics...</p>
-                </div>
+            <div id="topic-list-container" class="grid">
+                <article>
+                    <h3><a href="topic.html?id=topic_101">Question about CSS Flexbox</a></h3>
+                    <footer>Posted by: Alex on 2024-01-15</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_101">Delete</button>
+                    </div>
+                </article>
+
+                <article>
+                    <h3><a href="topic.html?id=topic_102">Best resources to learn JavaScript</a></h3>
+                    <footer>Posted by: Taylor on 2024-02-02</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_102">Delete</button>
+                    </div>
+                </article>
+
+                <article>
+                    <h3><a href="topic.html?id=topic_103">Debugging tips for PHP beginners</a></h3>
+                    <footer>Posted by: Jordan on 2024-03-10</footer>
+                    <div class="actions">
+                        <button type="button">Edit</button>
+                        <button type="button" class="delete-btn" data-id="topic_103">Delete</button>
+                    </div>
+                </article>
+            </div>
         </section>
 
     </main>
-    
+
     <script src="board.js" defer></script>
 </body>
 </html>
