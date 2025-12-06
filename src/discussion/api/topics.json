@@ -1,16 +1,23 @@
 [
   {
-    "id": "topic_1",
+    "id": "topic_101",
     "subject": "Question about CSS Flexbox",
-    "message": "I can't get my items to space out evenly. I'm using `display: flex` but they are all bunched up. What am I missing?",
-    "author": "Rashid",
-    "date": "2025-10-25"
+    "message": "I am trying to align items in a navigation bar using flexbox but cannot get them spaced evenly. Any tips?",
+    "author": "Alex",
+    "date": "2024-01-15"
   },
   {
-    "id": "topic_2",
-    "subject": "JavaScript `fetch` API error handling",
-    "message": "How do I properly catch errors from `fetch`? My `.catch()` block doesn't seem to fire for 404 errors.",
-    "author": "Khalifa",
-    "date": "2025-10-26"
+    "id": "topic_102",
+    "subject": "Best resources to learn JavaScript",
+    "message": "Looking for current tutorials and courses that balance theory with practice.",
+    "author": "Taylor",
+    "date": "2024-02-02"
+  },
+  {
+    "id": "topic_103",
+    "subject": "Debugging tips for PHP beginners",
+    "message": "New to PHP and curious how others structure error handling and logging.",
+    "author": "Jordan",
+    "date": "2024-03-10"
   }
 ]
