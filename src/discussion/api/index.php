@@ -119,7 +119,6 @@ function getAllTopics($db) {
     sendResponse(['success' => true, 'data' => $results]);
 }
 
-
 /**
  * Function: Get a single topic by topic_id
  * Method: GET
