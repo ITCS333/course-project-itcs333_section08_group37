@@ -1,4 +1,3 @@
-
 function createResourceArticle(resource) {
     const li = document.createElement('li');
     li.innerHTML = `
@@ -8,31 +7,34 @@ function createResourceArticle(resource) {
     return li;
 }
 
-
 window.createResourceArticle = createResourceArticle;
 
 const apiUrl = 'index.php';
 
-function loadResources() {
+async function loadResources() {
     const list = document.getElementById('resourcesList');
     list.innerHTML = '';
 
-    fetch(apiUrl)
-        .then(res => res.json())
-        .then(data => {
-            if (data.success && data.data.length > 0) {
-                data.data.forEach(res => {
-                    const li = createResourceArticle(res);
-                    list.appendChild(li);
-                });
-            } else {
-                list.innerHTML = '<li>No resources available</li>';
-            }
-        })
-        .catch(err => {
-            console.error('Error loading resources:', err);
-            list.innerHTML = '<li>Error loading resources</li>';
-        });
+    try {
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data.success && data.data.length > 0) {
+            data.data.forEach(resource => {
+                const li = createResourceArticle(resource);
+                list.appendChild(li);
+            });
+        } else {
+            list.innerHTML = '<li>No resources available</li>';
+        }
+    } catch (err) {
+        console.error('Error loading resources:', err);
+        list.innerHTML = '<li>Error loading resources</li>';
+    }
 }
 
+window.loadResources = loadResources;
+
+
 loadResources();
+
