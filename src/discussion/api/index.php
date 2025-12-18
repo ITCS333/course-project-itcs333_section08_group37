@@ -24,78 +24,7 @@ if (!empty($rawBody)) {
     }
 }
 
-// ============================================================================
-// TOPICS FUNCTIONS
-// ============================================================================
-
-function getAllTopics($db) {
-    global $db; // ضروري للاختبارات
-    $sql = "SELECT topic_id AS id, subject, message, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM topics";
-    $stmt = $db->prepare($sql);
-    $stmt->execute();
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-    sendResponse(['success' => true, 'data' => $results]);
-}
-
-function getTopicById($db, $topicId) {
-    global $db;
-    if (empty($topicId)) {
-        sendResponse(['success' => false, 'error' => 'Topic ID is required'], 400);
-    }
-
-    $sql = "SELECT topic_id AS id, subject, message, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS date FROM topics WHERE topic_id = :topic_id LIMIT 1";
-    $stmt = $db->prepare($sql);
-    $stmt->bindValue(':topic_id', $topicId, PDO::PARAM_STR);
-    $stmt->execute();
-
-    $topic = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($topic) {
-        sendResponse(['success' => true, 'data' => $topic]);
-    } else {
-        sendResponse(['success' => false, 'error' => 'Topic not found'], 404);
-    }
-}
-
-function createTopic($db, $data) {
-    global $db;
-    $requiredFields = ['topic_id', 'subject', 'message', 'author'];
-    foreach ($requiredFields as $field) {
-        if (empty($data[$field])) {
-            sendResponse(['success' => false, 'error' => "{$field} is required"], 400);
-        }
-    }
-
-    $topicId = sanitizeInput($data['topic_id']);
-    $subject = sanitizeInput($data['subject']);
-    $message = sanitizeInput($data['message']);
-    $author = sanitizeInput($data['author']);
-
-    $checkStmt = $db->prepare("SELECT topic_id FROM topics WHERE topic_id = :topic_id LIMIT 1");
-    $checkStmt->bindValue(':topic_id', $topicId, PDO::PARAM_STR);
-    $checkStmt->execute();
-    if ($checkStmt->fetch()) {
-        sendResponse(['success' => false, 'error' => 'Topic already exists'], 409);
-    }
-
-    $insertSql = "INSERT INTO topics (topic_id, subject, message, author) VALUES (:topic_id, :subject, :message, :author)";
-    $stmt = $db->prepare($insertSql);
-    $stmt->bindValue(':topic_id', $topicId, PDO::PARAM_STR);
-    $stmt->bindValue(':subject', $subject, PDO::PARAM_STR);
-    $stmt->bindValue(':message', $message, PDO::PARAM_STR);
-    $stmt->bindValue(':author', $author, PDO::PARAM_STR);
-
-    if ($stmt->execute()) {
-        sendResponse(['success' => true, 'topic_id' => $topicId], 201);
-    } else {
-        sendResponse(['success' => false, 'error' => 'Failed to create topic'], 500);
-    }
-}
-
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
-
+// =================== Helper Functions ===================
 function sendResponse($data, $statusCode = 200) {
     http_response_code($statusCode);
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -107,28 +36,69 @@ function sanitizeInput($data) {
     return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
 }
 
-// ============================================================================
-// MAIN ROUTER
-// ============================================================================
-
-$resource = $_GET['resource'] ?? null;
-if (!$resource || !in_array($resource, ['topics'], true)) {
-    sendResponse(['success' => false, 'error' => 'Invalid resource'], 400);
+// =================== Topics CRUD ===================
+function getAllTopics($db) {
+    $stmt = $db->prepare("SELECT topic_id AS id, subject, message, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at FROM topics ORDER BY created_at ASC");
+    $stmt->execute();
+    $topics = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    sendResponse(['success' => true, 'data' => $topics]);
 }
 
-switch ($resource) {
+function getTopicById($db, $topicId) {
+    if (!$topicId) sendResponse(['success'=>false,'error'=>'Topic ID is required'],400);
+    $stmt = $db->prepare("SELECT topic_id AS id, subject, message, author, DATE_FORMAT(created_at, '%Y-%m-%d') AS created_at FROM topics WHERE topic_id=? LIMIT 1");
+    $stmt->execute([$topicId]);
+    $topic = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$topic) sendResponse(['success'=>false,'error'=>'Topic not found'],404);
+    sendResponse(['success'=>true,'data'=>$topic]);
+}
+
+function createTopic($db, $data) {
+    $required = ['topic_id','subject','message','author'];
+    foreach($required as $f){
+        if(empty($data[$f])) sendResponse(['success'=>false,'error'=>"$f is required"],400);
+    }
+    $topicId = sanitizeInput($data['topic_id']);
+    $subject = sanitizeInput($data['subject']);
+    $message = sanitizeInput($data['message']);
+    $author = sanitizeInput($data['author']);
+
+    $check = $db->prepare("SELECT topic_id FROM topics WHERE topic_id=? LIMIT 1");
+    $check->execute([$topicId]);
+    if($check->fetch()) sendResponse(['success'=>false,'error'=>'Topic already exists'],409);
+
+    $stmt = $db->prepare("INSERT INTO topics (topic_id, subject, message, author) VALUES (?,?,?,?)");
+    $ok = $stmt->execute([$topicId,$subject,$message,$author]);
+    if(!$ok) sendResponse(['success'=>false,'error'=>'Failed to create topic'],500);
+
+    sendResponse([
+        'success'=>true,
+        'data'=>[
+            'id'=>$topicId,
+            'subject'=>$subject,
+            'message'=>$message,
+            'author'=>$author
+        ]
+    ],201);
+}
+
+// =================== Router ===================
+$resource = $_GET['resource'] ?? null;
+if (!$resource || !in_array($resource,['topics'],true)) sendResponse(['success'=>false,'error'=>'Invalid resource'],400);
+
+switch($resource){
     case 'topics':
-        switch ($method) {
+        switch($method){
             case 'GET':
-                $topicId = $_GET['id'] ?? null;
-                if ($topicId) getTopicById($db, $topicId);
+                $id = $_GET['id'] ?? null;
+                if($id) getTopicById($db,$id);
                 else getAllTopics($db);
                 break;
             case 'POST':
-                createTopic($db, $requestData);
+                createTopic($db,$requestData);
                 break;
             default:
-                sendResponse(['success' => false, 'error' => 'Method not allowed'], 405);
+                sendResponse(['success'=>false,'error'=>'Method not allowed'],405);
         }
         break;
 }
