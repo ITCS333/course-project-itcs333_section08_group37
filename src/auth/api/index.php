@@ -57,7 +57,8 @@ if (strlen($password) < 8) {
 }
 
 // --- Database Connection ---
-require_once "db.php";  // Must contain getDBConnection()
+require_once __DIR__ . '/../common/db.php';
+ // Must contain getDBConnection()
 
 try {
     $pdo = getDBConnection();
