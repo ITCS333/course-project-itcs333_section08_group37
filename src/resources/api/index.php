@@ -14,8 +14,8 @@ require_once __DIR__ . '/../common/db.php';
 $input = json_decode(file_get_contents('php://input'), true);
 $method = $_SERVER['REQUEST_METHOD'];
 $action = $_GET['action'] ?? null;
-$id = $_GET['id'] ?? null;
-$resource_id = $_GET['resource_id'] ?? null;
+$id = $_GET['id'] ?? ($input['id'] ?? null);
+$resource_id = $_GET['resource_id'] ?? ($input['resource_id'] ?? null);
 $comment_id = $_GET['comment_id'] ?? ($input['comment_id'] ?? null);
 
 function sendResponse($data, $statusCode = 200) {
@@ -25,7 +25,8 @@ function sendResponse($data, $statusCode = 200) {
 }
 
 function validateUrl($url) {
-    return filter_var($url, FILTER_VALIDATE_URL) !== false;
+    // يقبل روابط كاملة أو تبدأ بـ www
+    return filter_var($url, FILTER_VALIDATE_URL) || preg_match('/^(www\.)[a-z0-9\-]+\.[a-z]{2,}/i', $url);
 }
 
 function sanitizeInput($data) {
@@ -77,9 +78,8 @@ function createResource($db, $data) {
     sendResponse(['success'=>false,'message'=>'Failed to create resource'],500);
 }
 
-function updateResource($db, $data) {
-    if(empty($data['id'])) sendResponse(['success'=>false,'message'=>'Resource ID required'],400);
-    $id = $data['id'];
+function updateResource($db, $data, $id) {
+    if(empty($id)) sendResponse(['success'=>false,'message'=>'Resource ID required'],400);
 
     $stmt = $db->prepare("SELECT * FROM resources WHERE id=?");
     $stmt->execute([$id]);
@@ -173,7 +173,7 @@ try {
             else createResource($db,$input);
             break;
         case 'PUT':
-            updateResource($db,$input);
+            updateResource($db,$input,$id);
             break;
         case 'DELETE':
             if($action==='delete_comment') deleteComment($db,$comment_id);
