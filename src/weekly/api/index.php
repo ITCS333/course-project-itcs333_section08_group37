@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['test'] = true;
 /**
  * Weekly Course Breakdown API - Corrected for TASK3315
  * RESTful API for weekly course content and comments.
