@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Include DB connection (adjust the path if needed)
-require_once 'db.php';
+require_once __DIR__ . '/../common/db.php';
+
 
 // Request method + body + resource
 $method = $_SERVER['REQUEST_METHOD'];
