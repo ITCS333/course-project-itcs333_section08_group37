@@ -53,7 +53,6 @@ function handleChangePassword(event) {
     const newPassword = document.querySelector("#new-password").value;
     const confirmPassword = document.querySelector("#confirm-password").value;
 
-    
     messageBox.textContent = "";
     messageBox.style.color = "white";
     messageBox.style.padding = "10px";
@@ -70,11 +69,9 @@ function handleChangePassword(event) {
         return;
     }
 
-   
     messageBox.textContent = "Success: Password updated successfully!";
     messageBox.style.backgroundColor = "#22c55e"; 
-    
-   
+
     document.querySelector("#current-password").value = "";
     document.querySelector("#new-password").value = "";
     document.querySelector("#confirm-password").value = "";
@@ -114,7 +111,7 @@ function handleTableClick(event) {
     }
 }
 
-function handleSearch() {
+function handleSearch(event) {
     const term = searchInput.value.toLowerCase();
     if (!term) {
         renderTable(students);
@@ -161,4 +158,3 @@ async function loadStudentsAndInitialize() {
 }
 
 loadStudentsAndInitialize();
-
