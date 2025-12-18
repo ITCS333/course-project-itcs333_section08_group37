@@ -356,9 +356,15 @@ try {
             deleteComment($db,$_GET['id'] ?? null);
         }
     }
+} catch (PDOException $e) {
+    // Handle database-related errors
+    sendResponse(["error" => "Database error"], 500);
+
 } catch (Exception $e) {
-    sendResponse(["error"=>$e->getMessage()],500);
+    // Handle general errors
+    sendResponse(["error" => $e->getMessage()], 500);
 }
+
 
 /* ============================================================================
    HELPERS
