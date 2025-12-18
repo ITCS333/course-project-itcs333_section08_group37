@@ -11,9 +11,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit;
 }
 
-require_once '../config/Database.php';
-$database = new Database();
-$db = $database->getConnection();
+
+require_once 'db.php';
+
 
 
 $input = json_decode(file_get_contents('php://input'), true);
