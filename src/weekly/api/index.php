@@ -22,9 +22,7 @@ $rawBody = file_get_contents('php://input');
 $input = json_decode($rawBody, true) ?? [];
 $resource = $_GET['resource'] ?? 'weeks';
 
-// ============================================================================
-// HELPER FUNCTIONS
-// ============================================================================
+// =================== Helper Functions ===================
 function sendResponse($data, $statusCode = 200) {
     http_response_code($statusCode);
     echo json_encode($data, JSON_UNESCAPED_UNICODE);
@@ -44,19 +42,13 @@ function validateDate($date) {
     return $d && $d->format('Y-m-d') === $date;
 }
 
-function isValidSortField($field, $allowedFields) {
-    return in_array($field, $allowedFields, true);
-}
-
-// ============================================================================
-// WEEKS CRUD
-// ============================================================================
+// =================== Weeks CRUD ===================
 function getAllWeeks($db) {
     $search = $_GET['search'] ?? null;
     $sort   = $_GET['sort'] ?? 'start_date';
     $order  = strtolower($_GET['order'] ?? 'asc');
     $allowedSort = ['title','start_date','created_at'];
-    if(!isValidSortField($sort,$allowedSort)) $sort='start_date';
+    if(!in_array($sort,$allowedSort,true)) $sort='start_date';
     if(!in_array($order,['asc','desc'],true)) $order='asc';
 
     $sql = "SELECT week_id, title, start_date, description, links, created_at FROM weeks";
@@ -130,15 +122,13 @@ function updateWeek($db,$data) {
     if(!$check->fetch()) sendError("Week not found",404);
 
     $fields=[]; $values=[];
-    if(!empty($data['title'])) { $fields[]="title=?"; $values[]=sanitizeInput($data['title']); }
+    if(!empty($data['title'])) $fields[]="title=?"; $values[]=sanitizeInput($data['title']);
     if(!empty($data['start_date'])) { 
         if(!validateDate($data['start_date'])) sendError("Invalid date format",400);
         $fields[]="start_date=?"; $values[]=$data['start_date'];
     }
-    if(!empty($data['description'])) { $fields[]="description=?"; $values[]=sanitizeInput($data['description']); }
-    if(array_key_exists('links',$data) && is_array($data['links'])) {
-        $fields[]="links=?"; $values[]=json_encode($data['links']);
-    }
+    if(!empty($data['description'])) $fields[]="description=?"; $values[]=sanitizeInput($data['description']);
+    if(array_key_exists('links',$data) && is_array($data['links'])) $fields[]="links=?"; $values[]=json_encode($data['links']);
     if(empty($fields)) sendError("No fields to update",400);
     $fields[]="updated_at=CURRENT_TIMESTAMP";
     $values[]=$weekId;
@@ -147,20 +137,15 @@ function updateWeek($db,$data) {
     $ok = $stmt->execute($values);
     if(!$ok) sendError("Failed to update week",500);
 
-    $title = $data['title'] ?? null;
-    $desc = $data['description'] ?? null;
-    $startDate = $data['start_date'] ?? null;
-    $linksArray = $data['links'] ?? [];
-
     sendResponse([
         'success'=>true,
         'message'=>"Week updated successfully",
         'data'=>[
             'week_id'=>$weekId,
-            'title'=>$title,
-            'description'=>$desc,
-            'start_date'=>$startDate,
-            'links'=>$linksArray
+            'title'=>$data['title']??null,
+            'description'=>$data['description']??null,
+            'start_date'=>$data['start_date']??null,
+            'links'=>$data['links']??[]
         ]
     ]);
 }
@@ -182,9 +167,7 @@ function deleteWeek($db,$weekId) {
     ]);
 }
 
-// ============================================================================
-// COMMENTS CRUD
-// ============================================================================
+// =================== Comments CRUD ===================
 function getCommentsByWeek($db,$weekId) {
     if(!$weekId) sendError("week_id is required",400);
     $stmt = $db->prepare("SELECT id,week_id,author,text,created_at FROM comments WHERE week_id=? ORDER BY created_at ASC");
@@ -231,9 +214,7 @@ function deleteComment($db,$commentId) {
     sendResponse(['success'=>true,'message'=>"Comment deleted"]);
 }
 
-// ============================================================================
-// MAIN ROUTER
-// ============================================================================
+// =================== Main Router ===================
 try {
     if($resource==='weeks') {
         if($method==='GET') { $weekId=$_GET['week_id']??null; $weekId?getWeekById($db,$weekId):getAllWeeks($db);}
