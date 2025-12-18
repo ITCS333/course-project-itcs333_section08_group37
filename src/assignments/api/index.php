@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+/* REQUIRED: use $_SESSION to store user data */
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['user_id'] = 1;        // dummy user for assignment
+    $_SESSION['role'] = 'student';   // user role
+}
+
 /**
  * Assignment Management API
  */
