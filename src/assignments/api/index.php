@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+/* REQUIRED: use $_SESSION to store user data */
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['user_id'] = 1;        // dummy user for assignment
+    $_SESSION['role'] = 'student';   // user role
+}
+
 /**
  * Assignment Management API
  */
@@ -349,9 +356,15 @@ try {
             deleteComment($db,$_GET['id'] ?? null);
         }
     }
+} catch (PDOException $e) {
+    // Handle database-related errors
+    sendResponse(["error" => "Database error"], 500);
+
 } catch (Exception $e) {
-    sendResponse(["error"=>$e->getMessage()],500);
+    // Handle general errors
+    sendResponse(["error" => $e->getMessage()], 500);
 }
+
 
 /* ============================================================================
    HELPERS
