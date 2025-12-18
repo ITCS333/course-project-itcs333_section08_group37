@@ -1,59 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Title -->
     <title>Manage Weekly Breakdown</title>
 
-    
-    <link rel="stylesheet" href="../common/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        h1, h2 { margin-bottom: 15px; }
+        fieldset { background: white; padding: 15px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 20px; }
+        input, textarea { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; margin-bottom: 10px; }
+        button { padding: 10px 15px; background: #4f46e5; color: white; border: none; border-radius: 6px; cursor: pointer; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; }
+        tr:hover { background: #f0f0ff; }
+        .edit-btn, .delete-btn { background: #6366f1; padding: 6px 10px; border-radius: 6px; color: white; }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Manage Weekly Breakdown</h1>
     </header>
 
-    <!-- Main Content -->
     <main>
 
-        <!-- Section 1: Add/Edit Week Form -->
         <section>
             <h2>Add a New Week</h2>
-            <form id="week-form" action="#">
+            <form id="week-form">
                 <fieldset>
                     <legend>Weekly Details</legend>
 
-                    <!-- Week Title -->
                     <label for="week-title">Week Title:</label>
-                    <input id="week-title" type="text" placeholder="Week 1: Introduction to HTML" required>
+                    <input id="week-title" type="text" required>
 
-                    <!-- Start Date -->
                     <label for="week-start-date">Start Date:</label>
                     <input id="week-start-date" type="date" required>
 
-                    <!-- Description -->
                     <label for="week-description">Description & Notes:</label>
-                    <textarea id="week-description" rows="5"></textarea>
+                    <textarea id="week-description" rows="4"></textarea>
 
-                    <!-- Links -->
                     <label for="week-links">Exercises & Resources (one per line):</label>
                     <textarea id="week-links" rows="3"></textarea>
 
-                    <!-- Submit Button -->
-                    <button id="add-week" type="submit">Add Week</button>
+                    <button type="submit">Add Week</button>
                 </fieldset>
             </form>
         </section>
 
-        <!-- Section 2: Existing Weekly Entries -->
         <section>
             <h2>Current Weekly Breakdown</h2>
-            <table id="weeks-table" border="1">
+            <table>
                 <thead>
                     <tr>
                         <th>Week Title</th>
@@ -62,31 +59,13 @@
                     </tr>
                 </thead>
                 <tbody id="weeks-tbody">
-                    <!-- Dummy Row 1 -->
-                    <tr>
-                        <td>Week 1: Intro to HTML</td>
-                        <td>Basic structure and tags</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
-                    <!-- Dummy Row 2 -->
-                    <tr>
-                        <td>Week 2: Intro to CSS</td>
-                        <td>Selectors and styling basics</td>
-                        <td>
-                            <button class="edit-btn">Edit</button>
-                            <button class="delete-btn">Delete</button>
-                        </td>
-                    </tr>
+                    <!-- JS will inject rows here -->
                 </tbody>
             </table>
         </section>
 
     </main>
 
-    <!-- JS -->
     <script src="admin.js" defer></script>
 </body>
 </html>

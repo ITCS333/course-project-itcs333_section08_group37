@@ -1,53 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Title -->
     <title>Weekly Course Breakdown</title>
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="../common/styles.css">
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+        h1 { text-align: center; margin-bottom: 20px; }
+        article { background: white; padding: 15px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+        a { color: #4f46e5; font-weight: bold; }
+    </style>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <h1>Weekly Course Breakdown</h1>
     </header>
 
-    <!-- Main Content -->
     <main>
         <section id="week-list-section">
-            <!-- Dummy Week 1 -->
-            <article>
-                <h2>Week 1: Introduction to HTML</h2>
-                <p>Starts on: 2025-10-27</p>
-                <p>Basic structure and semantic tags</p>
-                <a href="details.html?id=week_1">View Details & Discussion</a>
-            </article>
-
-            <!-- Dummy Week 2 -->
-            <article>
-                <h2>Week 2: Introduction to CSS</h2>
-                <p>Starts on: 2025-11-03</p>
-                <p>Selectors, box model, and styling basics</p>
-                <a href="details.html?id=week_2">View Details & Discussion</a>
-            </article>
-
-            <!-- Dummy Week 3 -->
-            <article>
-                <h2>Week 3: CSS Flexbox and Grid</h2>
-                <p>Starts on: 2025-11-10</p>
-                <p>Modern layout techniques with Flexbox and Grid</p>
-                <a href="details.html?id=week_3">View Details & Discussion</a>
-            </article>
+            <!-- JS will inject weeks here -->
         </section>
     </main>
 
-    <!-- JS -->
     <script src="list.js" defer></script>
 </body>
 </html>
