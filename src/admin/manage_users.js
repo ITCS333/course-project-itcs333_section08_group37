@@ -48,21 +48,33 @@ function renderTable(studentArray) {
 
 function handleChangePassword(event) {
     event.preventDefault();
+    const messageBox = document.querySelector("#message-container");
     const currentPassword = document.querySelector("#current-password").value;
     const newPassword = document.querySelector("#new-password").value;
     const confirmPassword = document.querySelector("#confirm-password").value;
 
+    
+    messageBox.textContent = "";
+    messageBox.style.color = "white";
+    messageBox.style.padding = "10px";
+
     if (newPassword !== confirmPassword) {
-        alert("Passwords do not match.");
+        messageBox.textContent = "Error: Passwords do not match.";
+        messageBox.style.backgroundColor = "#ef4444"; 
         return;
     }
 
     if (newPassword.length < 8) {
-        alert("Password must be at least 8 characters.");
+        messageBox.textContent = "Error: Password must be at least 8 characters.";
+        messageBox.style.backgroundColor = "#ef4444"; 
         return;
     }
 
-    alert("Password updated successfully!");
+   
+    messageBox.textContent = "Success: Password updated successfully!";
+    messageBox.style.backgroundColor = "#22c55e"; 
+    
+   
     document.querySelector("#current-password").value = "";
     document.querySelector("#new-password").value = "";
     document.querySelector("#confirm-password").value = "";
